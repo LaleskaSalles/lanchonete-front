@@ -50,17 +50,20 @@ export class DrinkFormsComponent implements OnInit {
   saveDrink() {
     const form = this.drinkForm!.value;
 
-    if (this.drink) {
+    if (this.drink && this.drinkForm?.valid) {
       this.drinkService.updateDrink(this.drink.id, form).subscribe(() => {
         this.router.navigate(['/drinks']);
         this.toastr.success('Drink updated!');
       });
 
-    } else {
+    } if (this.drinkForm?.valid) {
       this.drinkService.createDrink(form).subscribe(() => {
         this.router.navigate(['/drinks']);
         this.toastr.success('Drink created!');
       })
+    } else {
+      this.drinkForm?.markAllAsTouched();
+      this.toastr.error('All fields must be filled!');
     }
   }
 

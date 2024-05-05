@@ -49,17 +49,20 @@ export class IngredientsFormsComponent implements OnInit {
   saveIngredient() {
     const form = this.ingredientForm!.value;
     
-    if (this.ingredient) {
+    if (this.ingredient && this.ingredientForm?.valid) {
       this.ingredientsService.updateIngredient(this.ingredient.id, form).subscribe(() => {
         this.router.navigate(['/ingredients']);
         this.toastr.success('Ingredient updated!');
       })
 
-    } else {
+    } else if (this.ingredientForm?.valid) {
       this.ingredientsService.createIngredient(form).subscribe(() => {
         this.router.navigate(['/ingredients']);
         this.toastr.success('Ingredient created!');
       })
+    } else {
+      this.ingredientForm?.markAllAsTouched();
+      this.toastr.error('Please fill in all required fields!');
     }
   }
 

@@ -1,0 +1,66 @@
+<div class="max-w-md mx-auto p-8 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        @if(hamburger){
+        Edit hamburger
+        } @else {
+        Add hamburger
+        }
+
+    </h2>
+    @if(hamburgerForm){
+    <form [formGroup]="hamburgerForm" (ngSubmit)="saveHamburger()" novalidate>
+        <div class="mb-6">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+            <input type="text" id="name" formControlName="name"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                required>
+            @if (hamburgerForm.get('name')?.hasError('required') && hamburgerForm.get('name')?.touched) {
+            <div class="text-red-500">Name is required</div>
+            }
+        </div>
+        <div class="mb-6">
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Price</label>
+            <input type="number" id="price" formControlName="price"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+                required>
+            @if (hamburgerForm.get('price')?.hasError('min') && hamburgerForm.get('price')?.touched || 
+            hamburgerForm.get('price')?.hasError('required') && hamburgerForm.get('price')?.touched) {
+            <div class="text-red-500">Price must be greater than or equal to 0.1</div>
+            }
+        </div>
+
+        <mat-form-field class="w-full">
+            <mat-label class="block mb-2 text-sm font-medium text-white">Ingredientes</mat-label>
+            <mat-select multiple formControlName="ingredients">
+              <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">
+                {{ ingredient.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          @if (hamburgerForm.get('ingredients')?.hasError('required') && hamburgerForm.get('ingredients')?.touched) {
+          <div class="text-red-500">Ingredients is required</div>
+          }
+
+        <div class="mb-6">
+            <label for="description"
+                class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+            <textarea id="description" rows="3" formControlName="description"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"></textarea>
+        </div>
+        <div class="flex items-center justify-between space-x-4">
+            <button type="button"
+                class="w-full bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" routerLink="/hamburgers">
+                Cancel
+            </button>
+            <button type="submit"
+                class="w-full bg-purple-400 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                @if(hamburger){
+                    Edit hamburger
+                    } @else {
+                    Add hamburger
+                    }
+            </button>
+        </div>
+    </form>
+    }
+</div>
