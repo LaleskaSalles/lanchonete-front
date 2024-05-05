@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, Output, inject } from '@angular/core';
+import { Component,  OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, ActivationEnd, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute,  Router, RouterModule } from '@angular/router';
 import { DrinkService } from '../../services/drinks/drink.service';
 import { IDrink } from '../Interfaces/IDrink';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-drink-forms',
@@ -18,6 +19,7 @@ export class DrinkFormsComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private drinkService = inject(DrinkService);
+  private toastr = inject(ToastrService);
 
   drinkForm?: FormGroup;
   drink?: IDrink;
@@ -39,13 +41,11 @@ export class DrinkFormsComponent implements OnInit {
       this.drinkForm = this.fb.group({
         name: ['', [Validators.required]],
         description: [''],
-        price: [null, [Validators.required, Validators.min(0.1)]],
+        price: [0, [Validators.required, Validators.min(0.1)]],
         flag_sugar: ['WITH_SUGAR', [Validators.required]]
       })
     }
   }
-
-
 
   saveDrink() {
     const form = this.drinkForm!.value;
@@ -53,11 +53,13 @@ export class DrinkFormsComponent implements OnInit {
     if (this.drink) {
       this.drinkService.updateDrink(this.drink.id, form).subscribe(() => {
         this.router.navigate(['/drinks']);
+        this.toastr.success('Drink updated!');
       });
 
     } else {
       this.drinkService.createDrink(form).subscribe(() => {
         this.router.navigate(['/drinks']);
+        this.toastr.success('Drink created!');
       })
     }
   }

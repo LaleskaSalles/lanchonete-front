@@ -10,17 +10,15 @@
             <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700" [routerLink]="['/ingredients']">Ingredients</button>
             <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700">Hamburgers</button>
         </div>
-        <h2 class="flex m-0"> Drinks </h2>
+        <h2 class="flex m-0"> Ingredients </h2>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg my-4 float-right mr-4">
             <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700"
-                [routerLink]="['/drinks/add']">
-                Add Drink
+                [routerLink]="['/ingredients/add']">
+                Add Ingredient
             </button>
         </div>
     </div>
-
-
 
     <div class="container mx-auto w-full shadow-md sm:rounded-lg my-4">
         <input type="text" placeholder="Search the name or description..." class="w-full p-2 rounded-md border border-purple-500" (input)="search($event)">
@@ -35,22 +33,22 @@
                 </tr>
             </thead>
             <tbody>
-                @for(drink of drinks; track drink.id){
+                @for(ingredient of ingredients; track ingredient.id){
                 <tr
                     class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 text-center">
 
-                    <td class="px-6 py-4"> {{ drink.name }}</td>
-                    <td class="px-6 py-4"> {{ drink.price }}</td>
-                    <td class="px-6 py-4"> {{ drink.description }}</td>
-                    <td class="px-6 py-4"> {{ drink.flag_sugar }}</td>
+                    <td class="px-6 py-4"> {{ ingredient.name }}</td>
+                    <td class="px-6 py-4"> {{ ingredient.price }}</td>
+                    <td class="px-6 py-4"> {{ ingredient.description }}</td>
+                    <td class="px-6 py-4"> {{ ingredient.flag_additional }}</td>
                     <td class="px-6 py-4">
                         <div class="flex items-center space-x-3 justify-center">
                             <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700"
-                                [routerLink]="['/drinks/edit', drink.id]">
+                                [routerLink]="['/ingredients/edit', ingredient.id]">
                                 Edit
                             </button>
-                            <button class=" px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-red-700"
-                                (click)="deleteDrink(drink)">
+                            <button class=" px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-red-700" 
+                            (click)="deleteIngredient(ingredient)">
                                 Delete
                             </button>
                         </div>
