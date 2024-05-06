@@ -4,11 +4,10 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HamburgerService } from '../../services/hamburgers/hamburger.service';
 import { ToastrService } from 'ngx-toastr';
-import { IHamburger } from '../Interfaces/IHamburger';
-
+import { IHamburger } from '../../Interfaces/IHamburger';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { IIngredients } from '../Interfaces/IIngredients';
+import { IIngredients } from '../../Interfaces/IIngredients';
 import { IngredientService } from '../../services/ingredients/ingredient.service';
 
 @Component({
@@ -44,7 +43,6 @@ export class HamburgerFormsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      
       this.hamburgerService.getHamburger(parseInt(id)).subscribe(hamburger => {
         this.hamburger = hamburger;
         this.loadIngredients();
@@ -68,7 +66,6 @@ export class HamburgerFormsComponent implements OnInit {
 
   saveHamburger() {
     const form = this.hamburgerForm!.value;
-    console.log(form);
     if (this.hamburger && this.hamburgerForm?.valid) {
       this.hamburgerService.updateHamburger(this.hamburger.id, form).subscribe(() => {
         this.router.navigate(['/hamburgers']);

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { IDrink } from '../../pages/Interfaces/IDrink';
+import { IDrink } from '../../Interfaces/IDrink';
 
 @Injectable({
   providedIn: 'root'

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IngredientService } from '../../services/ingredients/ingredient.service';
-import { IIngredients } from '../Interfaces/IIngredients';
+import { IIngredients } from '../../Interfaces/IIngredients';
 
 @Component({
   selector: 'app-ingredients-forms',
@@ -14,11 +14,14 @@ import { IIngredients } from '../Interfaces/IIngredients';
   styleUrl: './ingredients-forms.component.css'
 })
 export class IngredientsFormsComponent implements OnInit {
-  private fb = inject(FormBuilder)
-  private router = inject(Router)
-  private route = inject(ActivatedRoute)
-  private ingredientsService = inject(IngredientService)
-  private toastr = inject(ToastrService)
+
+  constructor(
+    private ingredientsService: IngredientService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private fb: FormBuilder
+  ){}
 
   ingredientForm?: FormGroup
   ingredient?: IIngredients

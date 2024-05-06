@@ -1,13 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DrinkService } from '../../services/drinks/drink.service';
 import { RouterModule } from '@angular/router';
-import { IDrink } from '../Interfaces/IDrink';
+import { IDrink } from '../../Interfaces/IDrink';
 import { ToastrService } from 'ngx-toastr';
+import { NavbarComponent } from '../../components/client/navbar/navbar.component';
 
 @Component({
   selector: 'app-drink',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, NavbarComponent],
   templateUrl: './drink.component.html',
   styleUrl: './drink.component.css'
 })
@@ -15,9 +16,11 @@ export class DrinkComponent implements OnInit {
 
   drinks: IDrink[] = [];
   filter!: IDrink[];
-  private drinkService = inject(DrinkService);
-  
-  constructor(private toastr: ToastrService) { }
+
+  constructor(
+    private toastr: ToastrService,
+    private drinkService: DrinkService
+  ) { }
 
   ngOnInit(): void {
     this.loadDrinks();
@@ -39,7 +42,7 @@ export class DrinkComponent implements OnInit {
 
   search(e: Event) {
     const target = e.target as HTMLInputElement;
-    this.drinks = this.filter.filter((drink) =>  {
+    this.drinks = this.filter.filter((drink) => {
       return drink.name?.toUpperCase().includes(target.value.toUpperCase()) || drink.description?.toUpperCase().includes(target.value.toUpperCase());
     });
   }

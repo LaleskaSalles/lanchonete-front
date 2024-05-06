@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { IHamburger } from '../../pages/Interfaces/IHamburger';
+import { IHamburger } from '../../Interfaces/IHamburger';
 
 @Injectable({
   providedIn: 'root'

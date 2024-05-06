@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component,  OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute,  Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DrinkService } from '../../services/drinks/drink.service';
-import { IDrink } from '../Interfaces/IDrink';
+import { IDrink } from '../../Interfaces/IDrink';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -15,11 +15,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DrinkFormsComponent implements OnInit {
 
-  private fb = inject(FormBuilder);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  private drinkService = inject(DrinkService);
-  private toastr = inject(ToastrService);
+  constructor(
+    private route: ActivatedRoute,
+    private drinkService: DrinkService,
+    private router: Router,
+    private toastr: ToastrService,
+    private fb: FormBuilder
+  ) { }
+
 
   drinkForm?: FormGroup;
   drink?: IDrink;
@@ -56,7 +59,7 @@ export class DrinkFormsComponent implements OnInit {
         this.toastr.success('Drink updated!');
       });
 
-    } if (this.drinkForm?.valid) {
+    } else if (this.drinkForm?.valid) {
       this.drinkService.createDrink(form).subscribe(() => {
         this.router.navigate(['/drinks']);
         this.toastr.success('Drink created!');

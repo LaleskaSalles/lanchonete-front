@@ -1,0 +1,41 @@
+<div class="w-screen bg-gray-100 h-screen">
+    <app-navbar></app-navbar>
+
+    <div class="w-full">
+        <div class="flex space-x-4 border-b-2 border-purple-500 justify-around py-2 m-0 ">
+            <p class="flex text-3xl text-purple-500">Cart</p>
+            <div class="flex space-x-4">
+                <p class="flex text-xl py-1">Total: R${{ cartService.getTotal() }}</p>
+                <button class="flex float-right bg-green-600 text-white rounded-lg hover:bg-green-700 px-4 py-3"
+                (click)="finalizeOrder()">Finalize order</button>
+            </div>
+            
+        </div>
+        <div class="flex flex-wrap justify-center m-2">
+            @for(item of cartService.getItems(); track item.id){
+            <div
+                class="min-w-80 m-4 rounded-lg bg-white text-surface shadow-md dark:bg-neutral-800">
+                <div class="border-b-2 border-neutral-100 px-6 py-3 dark:border-white/10">
+                    {{ item.name }}
+                    <button class="flex float-right text-red-500" (click)="removeFromCart(item)">Delete</button>
+                </div>
+                <div class="p-6">
+                    <blockquote class="flex flex-wrap justify-between">
+                        <p class="text-xl text-neutral-500" >R${{ item.price }}</p>
+                        <div class="text-md text-neutral-500">
+                        
+                        <button class="shadow-md bg-purple-500 text-white rounded-lg hover:bg-purple-700 px-4 py-2" 
+                        (click)="cartService.incrementQuantity(item.id)">+</button>
+                        <span class="mx-2">{{ item.quantity }}</span>
+                        <button class="shadow-md bg-purple-500 text-white rounded-lg hover:bg-purple-700 px-4 py-2" 
+                        (click)="cartService.decrementQuantity(item.id)">-</button>
+                    </div>
+                    </blockquote>
+                    
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+</div>

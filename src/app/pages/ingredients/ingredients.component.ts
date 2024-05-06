@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IIngredients } from '../Interfaces/IIngredients';
+import { IIngredients } from '../../Interfaces/IIngredients';
 import { ToastrService } from 'ngx-toastr';
 import { IngredientService } from '../../services/ingredients/ingredient.service';
+import { NavbarComponent } from '../../components/client/navbar/navbar.component';
 
 @Component({
   selector: 'app-ingredients',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, NavbarComponent],
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.css'
 })

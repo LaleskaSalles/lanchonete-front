@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IHamburger } from '../Interfaces/IHamburger';
+import { IHamburger } from '../../Interfaces/IHamburger';
 import { HamburgerService } from '../../services/hamburgers/hamburger.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from '../../components/client/navbar/navbar.component';
 
 @Component({
   selector: 'app-hamburger',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, NavbarComponent],
   templateUrl: './hamburger.component.html',
   styleUrl: './hamburger.component.css'
 })
@@ -15,9 +16,10 @@ export class HamburgerComponent implements OnInit {
   hamburgers: IHamburger[] = [];
   filter!: IHamburger[];
 
-  private hamburgerService = inject(HamburgerService);
-
-  constructor(private toastr: ToastrService) { }
+  constructor(
+    private toastr: ToastrService,
+    private hamburgerService: HamburgerService
+  ) { }
 
   ngOnInit(): void {
     this.loadHamburgers();

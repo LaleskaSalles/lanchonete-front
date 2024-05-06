@@ -1,14 +1,13 @@
 <div class="w-screen bg-gray-100 h-screen">
-    <div class="flex items-center justify-around w-full bg-purple-500 p-4 text-white items-center">
-        <h1 class="cursor-pointer">Lanchonete</h1>
-        <button class="px-5 py-2 text-black bg-white rounded-lg hover:bg-gray-300">Admin</button>
-    </div>
-
+    <app-navbar></app-navbar>
     <div class="flex items-center justify-around w-full p-4">
         <div class="flex space-x-4">
-            <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700" [routerLink]="['/drinks']">Drinks</button>
-            <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700" [routerLink]="['/ingredients']">Ingredients</button>
-            <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700" [routerLink]="['/hamburgers']">Hamburgers</button>
+            <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700"
+                [routerLink]="['/drinks']">Drinks</button>
+            <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700"
+                [routerLink]="['/ingredients']">Ingredients</button>
+            <button class="px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-700"
+                [routerLink]="['/hamburgers']">Hamburgers</button>
         </div>
         <h2 class="flex m-0"> Drinks </h2>
 
@@ -23,7 +22,8 @@
 
 
     <div class="container mx-auto w-full shadow-md sm:rounded-lg my-4">
-        <input type="text" placeholder="Search the name or description..." class="w-full p-2 rounded-md border border-purple-500" (input)="search($event)">
+        <input type="text" placeholder="Search the name or description..."
+            class="w-full p-2 rounded-md border border-purple-500" (input)="search($event)">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 text-center">
