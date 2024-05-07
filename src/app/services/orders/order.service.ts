@@ -42,6 +42,7 @@ export class OrderService {
     }
   }
 
+  // Transforms the data (cart) to match the form
   private addHamburgerToForm(hamburger: any, form: FormGroup): void {
     const formattedId = hamburger.id.replace('HAMBURGER-', ''); 
     const hamburgerGroup = this.fb.group({
@@ -89,6 +90,10 @@ export class OrderService {
     return item.id.startsWith('INGREDIENT');
   }
 
+  //cep
+  cep(cep: string) {
+    return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
+  }
 
 
 }

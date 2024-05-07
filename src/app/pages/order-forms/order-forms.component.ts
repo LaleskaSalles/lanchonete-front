@@ -7,12 +7,13 @@ import { OrderService } from '../../services/orders/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart/cart.service';
 import { CommonModule } from '@angular/common';
-import { response } from 'express';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-order-forms',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, ReactiveFormsModule, RouterModule, CommonModule],
+  imports: [NavbarComponent, FormsModule, ReactiveFormsModule, RouterModule, CommonModule, NgxMaskDirective],
+  providers: [provideNgxMask({ /* opções de cfg */ })],
   templateUrl: './order-forms.component.html',
   styleUrl: './order-forms.component.css'
 })
@@ -28,6 +29,24 @@ export class OrderFormsComponent implements OnInit {
     private orderService: OrderService,
     private cartService: CartService
   ) { }
+
+  searchCep() {
+    const cep = this.orderForm?.get('zip_code')?.value;
+    if (cep) {
+      this.orderService.cep(cep).subscribe((response: any) => {
+        if (response && !response.erro) {
+          this.orderForm?.patchValue({
+            street: response.logradouro,
+            neighborhood: response.bairro,
+            state: response.uf,
+            city: response.localidade
+          });
+        } else {
+          this.toastr.error('CEP not found!');
+        }
+      });
+    }
+  }
 
   ngOnInit(): void {
     const cartItems = this.cartService.getItems();

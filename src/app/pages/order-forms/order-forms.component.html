@@ -1,6 +1,6 @@
 <div class="w-screen bg-gray-100 h-screen ">
     <app-navbar></app-navbar>
-    <div class="container mx-auto w-full shadow-md sm:rounded-lg my-4 p-8 bg-white dark:bg-gray-800 w-full p-6">
+    <div class="container mx-auto w-full shadow-md sm:rounded-lg my-4 p-8 bg-white w-full">
         <h2 class="font-bold mb-6 text-gray-800 dark:text-white">
             Finish your order
         </h2>
@@ -26,9 +26,9 @@
                         <p class="text-red-500">*</p>
                         Phone
                     </label>
-                    <input type="text" id="phone" formControlName="phone"
+                    <input type="tel" id="phone" formControlName="phone" mask="(00) 0 0000 0000"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                        required>
+                        placeholder="(00) 00000-0000" required>
                     @if (orderForm.get('phone')?.hasError('required') && orderForm.get('phone')?.touched) {
                     <div class="text-red-500">Phone is required</div>
                     }
@@ -41,9 +41,9 @@
                         <p class="text-red-500">*</p>
                         Zip Code
                     </label>
-                    <input type="text" id="zip_code" formControlName="zip_code"
+                    <input type="text" id="zip_code" formControlName="zip_code" (blur)="searchCep()" mask="00000-000"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                        required>
+                        placeholder="00000-000" required>
                     @if (orderForm.get('zip_code')?.hasError('required') && orderForm.get('zip_code')?.touched) {
                     <div class="text-red-500">Zip Code is required</div>
                     }
@@ -75,10 +75,10 @@
                     }
                 </div>
                 <div class="mb-6">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <label for="number" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                         Number
                     </label>
-                    <input type="text" id="number" formControlName="number"
+                    <input type="number" id="number" formControlName="number"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
                 </div>
             </div>
@@ -98,7 +98,7 @@
                     </label>
                     <input type="text" id="state" formControlName="state"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
-                        required>
+                        placeholder="SP" required>
                     @if (orderForm.get('state')?.hasError('required') && orderForm.get('state')?.touched) {
                     <div class="text-red-500">State is required</div>
                     }
@@ -130,38 +130,38 @@
                         <tbody>
                             <tr *ngFor="let item of orderForm.get('hamburgers')?.value">
                                 <td class="border px-4 py-2">{{ item?.name }}</td>
-                                <td class="border px-4 py-2">{{ item?.price }}</td>
+                                <td class="border px-4 py-2">R${{ item?.price }}</td>
                             </tr>
                             <tr *ngFor="let item of orderForm.get('drinks')?.value">
                                 <td class="border px-4 py-2">{{ item?.name }}</td>
-                                <td class="border px-4 py-2">{{ item?.price }}</td>
+                                <td class="border px-4 py-2">R${{ item?.price }}</td>
                             </tr>
                             <tr *ngFor="let item of orderForm.get('ingredients')?.value">
                                 <td class="border px-4 py-2">{{ item?.name }}</td>
-                                <td class="border px-4 py-2">{{ item?.price }}</td>
+                                <td class="border px-4 py-2">R${{ item?.price }}</td>
                             </tr>
                         </tbody>
                     </table>
 
                 </div>
 
-                <div class="w-1/2 relative ">
-                    <div class="w-full p-4 text-center">
+                <div class="w-1/2 ">
+                    <div class="p-4 text-center">
                         <p class="font-bold text-lg">Total price: R${{ orderForm.get('total_price')?.value }}</p>
                     </div>
-                    <div class="absolute bottom-0 right-0 w-full p-4">
-                        <div class="flex items-center justify-between space-x-4">
+                  
+                        <div class="fixed bottom-0 left-0 w-full p-4">
+                        <div class="flex justify-end container mx-auto p-8">
                             <button type="button"
-                                class="w-full bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+                             class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline mr-2"
                                 routerLink="/cart">
                                 Cancel
                             </button>
-                            <button type="submit"
-                                class="w-full bg-purple-400 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                            <button type="submit" class="bg-purple-400 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
                                 Finalize order
                             </button>
                         </div>
-                    </div>
+                </div>
                 </div>
             </div>
         </form>

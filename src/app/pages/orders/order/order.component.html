@@ -17,7 +17,7 @@
     </div>
     <div>
         <label for="name" class="flex block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-            {{ order.phone }}
+            {{ order.phone | mask: '(00) 00000-0000' }}
         </label>
     </div>
     <div class="mb-6 w-full">
@@ -28,7 +28,7 @@
             } @if(order.number != null){
             , {{ order.complement }}
             }
-            {{ order.zip_code }}, {{ order.city }}, {{ order.state }}
+            {{ order.zip_code | mask: '00000-000' }}, {{ order.city }}, {{ order.state }}
         </label>
     </div>
 

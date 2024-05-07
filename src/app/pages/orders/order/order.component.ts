@@ -4,11 +4,13 @@ import { OrderService } from '../../../services/orders/order.service';
 import { IOrder } from '../../../Interfaces/IOrder';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../services/cart/cart.service';
+import { NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, NgxMaskPipe],
+  providers: [provideNgxMask()],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
