@@ -18,7 +18,7 @@ export class OrderService {
     return this.http.get<IOrder[]>(`${this.apiurl}`)
   }
 
-  getOrder(id:number) {
+  getOrderById(id:number) {
     return this.http.get<IOrder>(`${this.apiurl}/${id}`)
   }
 

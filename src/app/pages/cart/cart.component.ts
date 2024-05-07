@@ -27,7 +27,7 @@ export class CartComponent {
   finalizeOrder() {
     const hasHamburger = this.cartService.getItems().some(item => item.quantity > 0);
     if (!hasHamburger) {
-      this.toastr.error('You must add a any to finish the order!');
+      this.toastr.error('You must add a something to finish the order!');
       return;
     }
     this.router.navigate(['/order']);

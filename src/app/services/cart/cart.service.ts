@@ -27,6 +27,10 @@ export class CartService{
     return this.items;
   }
 
+  clearCart() {
+    this.items = [];
+  }
+
   delete(item: any){
     this.items = this.items.filter((i) => i.id !== item.id);
     localStorage.setItem('cartItems', JSON.stringify(this.items));

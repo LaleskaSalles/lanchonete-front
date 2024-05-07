@@ -5,9 +5,10 @@ import { IngredientsComponent } from './pages/ingredients/ingredients.component'
 import { IngredientsFormsComponent } from './pages/ingredients-forms/ingredients-forms.component';
 import { HamburgerComponent } from './pages/hamburger/hamburger.component';
 import { HamburgerFormsComponent } from './pages/hamburger-forms/hamburger-forms.component';
-import { OrderComponent } from './pages/order/order.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { ListComponent } from './pages/list/list.component';
 import { OrderFormsComponent } from './pages/order-forms/order-forms.component';
+import { OrderComponent } from './pages/orders/order/order.component';
 
 export const routes: Routes = [
     { path: 'drinks',component: DrinkComponent },
@@ -22,8 +23,9 @@ export const routes: Routes = [
     { path: 'hamburgers/add', component: HamburgerFormsComponent},
     { path: 'hamburgers/edit/:id', component: HamburgerFormsComponent },
 
-    { path: '', component: OrderComponent },
+    { path: '', component: ListComponent },
     { path: 'cart', component: CartComponent },
-    { path: 'order', component: OrderFormsComponent}
+    { path: 'order', component: OrderFormsComponent},
+    { path: 'order/:id', component: OrderComponent }
 
 ];

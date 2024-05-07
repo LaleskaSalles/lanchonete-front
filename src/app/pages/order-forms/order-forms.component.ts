@@ -7,6 +7,7 @@ import { OrderService } from '../../services/orders/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart/cart.service';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 @Component({
   selector: 'app-order-forms',
@@ -49,14 +50,20 @@ export class OrderFormsComponent implements OnInit {
     cartItems.forEach(item => {
       this.orderService.addItemToForm(item, this.orderForm!);
     });
+  }
 
+  get itemsFormArray() {
+    console.log(this.orderForm?.get('items'));
+    return this.orderForm?.get('items') as FormArray
   }
 
   saveOrder() {
     const form = this.orderForm!.value;
     console.log(form);
     if (this.orderForm?.valid) {
-      this.orderService.createOrder(form).subscribe(() => {
+      this.orderService.createOrder(form).subscribe((response) => {
+        const responseId = response.id;
+        this.router.navigate(['/order', responseId]);
         this.toastr.success('Order created!');
       })
     } else {

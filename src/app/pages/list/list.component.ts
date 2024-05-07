@@ -19,11 +19,11 @@ import { NavbarComponent } from '../../components/client/navbar/navbar.component
   selector: 'app-order',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule, CartComponent, NavbarComponent],
-  templateUrl: './order.component.html',
-  styleUrl: './order.component.css'
+  templateUrl: './list.component.html',
+  styleUrl: './list.component.css'
 })
 
-export class OrderComponent implements OnInit{
+export class ListComponent implements OnInit{
   orders: IOrder[] = [];
   filterIngredients!: IIngredients[];
   filterDrinks!: IDrink[];
