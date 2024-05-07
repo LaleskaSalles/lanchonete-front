@@ -4,6 +4,7 @@ import { HamburgerService } from '../../services/hamburgers/hamburger.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../components/client/navbar/navbar.component';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-hamburger',
@@ -33,7 +34,12 @@ export class HamburgerComponent implements OnInit {
   }
 
   deleteHamburger(hamburger: IHamburger) {
-    this.hamburgerService.deleteHamburger(hamburger.id).subscribe(() => {
+    this.hamburgerService.deleteHamburger(hamburger.id).pipe(
+      catchError(() => {
+        this.toastr.error('Hamburger is being used! Cannot be deleted!');
+        return [];
+      })
+    ).subscribe(() => {
       this.loadHamburgers();
       this.toastr.success('Hamburger deleted!');
     })
@@ -41,7 +47,7 @@ export class HamburgerComponent implements OnInit {
 
   search(e: Event) {
     const target = e.target as HTMLInputElement;
-    this.hamburgers = this.filter.filter((hamburger) =>  {
+    this.hamburgers = this.filter.filter((hamburger) => {
       return hamburger.name?.toUpperCase().includes(target.value.toUpperCase()) || hamburger.description?.toUpperCase().includes(target.value.toUpperCase());
     });
   }

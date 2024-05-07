@@ -76,14 +76,17 @@ export class ListComponent implements OnInit{
   }
 
   search(e: Event) {
-
     const target = e.target as HTMLInputElement;
-    this.ingredients = this.filterIngredients.filter((ingredient) =>  {
-      return ingredient.name?.toUpperCase().includes(target.value.toUpperCase());
-    })
+
+    this.ingredients = this.filterIngredients.filter((ingredient) => {
+      return ingredient.name?.toUpperCase().includes(target.value.toUpperCase()) &&
+        ingredient.flag_additional === 'ADDITIONAL'; 
+    });
+
     this.drinks = this.filterDrinks.filter((drink) =>  {
       return drink.name?.toUpperCase().includes(target.value.toUpperCase());
     })
+
     this.hamburgers = this.filterHamburgers.filter((hamburger) =>  {
       return hamburger.name?.toUpperCase().includes(target.value.toUpperCase());
     })

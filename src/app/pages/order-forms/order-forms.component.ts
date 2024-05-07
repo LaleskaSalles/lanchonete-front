@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IOrder } from '../../Interfaces/IOrder';
 import { NavbarComponent } from '../../components/client/navbar/navbar.component';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { OrderService } from '../../services/orders/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart/cart.service';
@@ -13,7 +13,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
   selector: 'app-order-forms',
   standalone: true,
   imports: [NavbarComponent, FormsModule, ReactiveFormsModule, RouterModule, CommonModule, NgxMaskDirective],
-  providers: [provideNgxMask({ /* opções de cfg */ })],
+  providers: [provideNgxMask()],
   templateUrl: './order-forms.component.html',
   styleUrl: './order-forms.component.css'
 })
@@ -72,18 +72,18 @@ export class OrderFormsComponent implements OnInit {
   }
 
   get itemsFormArray() {
-    console.log(this.orderForm?.get('items'));
     return this.orderForm?.get('items') as FormArray
   }
 
   saveOrder() {
     const form = this.orderForm!.value;
-    console.log(form);
     if (this.orderForm?.valid) {
       this.orderService.createOrder(form).subscribe((response) => {
         const responseId = response.id;
         this.router.navigate(['/order', responseId]);
+        history.pushState(null, '', '/order/' + responseId);
         this.toastr.success('Order created!');
+        this.cartService.clearCart();
       })
     } else {
       this.orderForm?.markAllAsTouched();

@@ -23,16 +23,21 @@ export class OrderComponent implements OnInit {
     private cartService: CartService
   ) { }
 
-  order? : IOrder;
+  order?: IOrder;
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {
       this.orderService.getOrderById(parseInt(id)).subscribe(order => {
-      this.order = order;
+        this.order = order;
       })
     }
+
+    history.pushState(null, '', document.URL);
+    window.addEventListener('popstate', function () {
+      history.pushState(null, '', document.URL);
+    });
   }
 
   orderFinalized() {

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { IDrink } from '../../Interfaces/IDrink';
 import { ToastrService } from 'ngx-toastr';
 import { NavbarComponent } from '../../components/client/navbar/navbar.component';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-drink',
@@ -34,7 +35,14 @@ export class DrinkComponent implements OnInit {
   }
 
   deleteDrink(drinks: IDrink) {
-    this.drinkService.deleteDrink(drinks.id).subscribe(() => {
+
+    this.drinkService.deleteDrink(drinks.id).pipe(
+      catchError(() => {
+        this.toastr.error('Drink is being used! Cannot be deleted!');
+        return [];
+      })
+    )
+    .subscribe(() => {
       this.loadDrinks();
       this.toastr.success('Drink deleted!');
     })

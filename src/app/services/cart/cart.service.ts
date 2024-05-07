@@ -28,7 +28,8 @@ export class CartService{
   }
 
   clearCart() {
-    this.items = [];
+    this.items = []; 
+    localStorage.removeItem('cartItems');
   }
 
   delete(item: any){

@@ -29,7 +29,7 @@
                     <input type="tel" id="phone" formControlName="phone" mask="(00) 0 0000 0000"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                         placeholder="(00) 00000-0000" required>
-                    @if (orderForm.get('phone')?.hasError('required') && orderForm.get('phone')?.touched) {
+                    @if (orderForm.get('phone')?.hasError('required') && orderForm.get('phone')?.touched || orderForm.get('phone')?.invalid && orderForm.get('phone')?.touched ) {
                     <div class="text-red-500">Phone is required</div>
                     }
                 </div>
@@ -39,12 +39,12 @@
                 <div class="mb-6 w-1/3">
                     <label for="name" class="flex block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                         <p class="text-red-500">*</p>
-                        Zip Code
+                        Brazilian Zip Code
                     </label>
                     <input type="text" id="zip_code" formControlName="zip_code" (blur)="searchCep()" mask="00000-000"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
                         placeholder="00000-000" required>
-                    @if (orderForm.get('zip_code')?.hasError('required') && orderForm.get('zip_code')?.touched) {
+                    @if (orderForm.get('zip_code')?.hasError('required') && orderForm.get('zip_code')?.touched || orderForm.get('zip_code')?.invalid && orderForm.get('zip_code')?.touched ) {
                     <div class="text-red-500">Zip Code is required</div>
                     }
                 </div>

@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { IngredientService } from '../../services/ingredients/ingredient.service';
 import { NavbarComponent } from '../../components/client/navbar/navbar.component';
 
+import { catchError } from 'rxjs';
+
 @Component({
   selector: 'app-ingredients',
   standalone: true,
@@ -32,15 +34,20 @@ export class IngredientsComponent implements OnInit {
   }
 
   deleteIngredient(ingredient: IIngredients) {
-    this.ingredientService.deleteIngredient(ingredient.id).subscribe(() => {
+    this.ingredientService.deleteIngredient(ingredient.id).pipe(
+      catchError(() => {
+        this.toastr.error('Ingredient is being used! Cannot be deleted!');
+        return [];
+      })
+    ).subscribe(() => {
       this.loadIngredients();
       this.toastr.success('Ingredient deleted!');
-    })
+    });
   }
 
   search(e: Event) {
     const target = e.target as HTMLInputElement;
-    this.ingredients = this.filter.filter((ingredient) =>  {
+    this.ingredients = this.filter.filter((ingredient) => {
       return ingredient.name?.toUpperCase().includes(target.value.toUpperCase()) || ingredient.description?.toUpperCase().includes(target.value.toUpperCase());
     });
   }
