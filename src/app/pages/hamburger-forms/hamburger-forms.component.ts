@@ -81,4 +81,9 @@ export class HamburgerFormsComponent implements OnInit {
       this.toastr.error('Please fill in all required fields');
     }
   }
+
+  isDescriptionTooLong() {
+    const descriptionControl = this.hamburgerForm?.get('description');
+    return descriptionControl?.value.length > 100;
+  }
 }

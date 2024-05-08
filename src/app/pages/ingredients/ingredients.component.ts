@@ -48,7 +48,7 @@ export class IngredientsComponent implements OnInit {
   search(e: Event) {
     const target = e.target as HTMLInputElement;
     this.ingredients = this.filter.filter((ingredient) => {
-      return ingredient.name?.toUpperCase().includes(target.value.toUpperCase()) || ingredient.description?.toUpperCase().includes(target.value.toUpperCase());
+      return ingredient.name?.toUpperCase().includes(target.value.toUpperCase()) || ingredient.id?.toString().includes(target.value.toUpperCase());
     });
   }
 }

@@ -52,6 +52,9 @@
                 class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
             <textarea id="description" rows="3" formControlName="description"
                 class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"></textarea>
+            @if (isDescriptionTooLong()){
+                <p class="text-red-500">A descrição é muito grande (mais de 100 caracteres).</p>
+            }
         </div>
         <div class="flex items-center justify-between space-x-4">
             <button type="button"

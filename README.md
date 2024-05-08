@@ -33,3 +33,24 @@ Isso iniciará o servidor de desenvolvimento e você poderá acessar o aplicativ
   - CRUD de ingredientes
   - CRUD de hamburgers
   - CRUD de bebidas
+
+## Back-end
+    https://github.com/LaleskaSalles/lanchonete-backEnd
+
+## Simulação
+
+Se opitar por popular o banco de dos através dos resources/db.migration no Back-end pode usar o usuário `teste@teste.com` 
+e senha: `teste`
+
+- **Main**
+![alt text](img/image-1.png)
+
+- **Cart**
+![alt text](img/image-2.png)
+
+- **Order**
+![alt text](img/image.png)
+
+- **CRUD**
+![alt text](img/image-4.png)
+

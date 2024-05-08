@@ -48,7 +48,7 @@ export class HamburgerComponent implements OnInit {
   search(e: Event) {
     const target = e.target as HTMLInputElement;
     this.hamburgers = this.filter.filter((hamburger) => {
-      return hamburger.name?.toUpperCase().includes(target.value.toUpperCase()) || hamburger.description?.toUpperCase().includes(target.value.toUpperCase());
+      return hamburger.name?.toUpperCase().includes(target.value.toUpperCase()) || hamburger.id?.toString().includes(target.value.toUpperCase());
     });
   }
 }

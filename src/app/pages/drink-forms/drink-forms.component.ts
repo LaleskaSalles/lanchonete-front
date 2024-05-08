@@ -71,4 +71,8 @@ export class DrinkFormsComponent implements OnInit {
   }
 
 
+  isDescriptionTooLong() {
+    const descriptionControl = this.drinkForm?.get('description');
+    return descriptionControl?.value.length > 100;
+  }
 }

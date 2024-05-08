@@ -25,11 +25,14 @@ export class CartComponent {
   }
 
   finalizeOrder() {
-    const hasItens = this.cartService.getItems().some(item => item.quantity > 0);
-    if (!hasItens) {
-      this.toastr.error('You must add a something to finish the order!');
+    const hasBurger = this.cartService.getItems().some(item => item.type === 'HAMBURGER' && item.quantity > 0);
+    const hasDrink = this.cartService.getItems().some(item => item.type === 'DRINK' && item.quantity > 0);
+  
+    if (!hasBurger && !hasDrink) {
+      this.toastr.error('You must add at least one hamburger or one drink to finish the order!');
       return;
     }
+    
     this.router.navigate(['/order']);
   }
 }

@@ -64,7 +64,8 @@ export class OrderFormsComponent implements OnInit {
       ingredients: this.fb.array([]),
       hamburgers: this.fb.array([]),
       drinks: this.fb.array([]),
-      total_price: this.cartService.getTotal()
+      total_price: this.cartService.getTotal(),
+      comments: ['']
     })
     cartItems.forEach(item => {
       this.orderService.addItemToForm(item, this.orderForm!);

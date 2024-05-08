@@ -32,6 +32,18 @@
         </label>
     </div>
 
+    @if(order.comments){
+    <div>
+        <label for="name" class="flex px-2 block mb-2 text-lg text-gray-700">
+            Comments:
+        </label>
+        <div class="mb-6 w-full bg-gray-50 ">
+            <label for="name" class="flex p-2 block mb-2 text-sm text-gray-700">
+                {{ order.comments }}
+            </label>
+        </div>
+    </div>
+    }
     <div class="mb-6 w-full bg-gray-50 ">
         <label for="name" class="flex p-2 block mb-2 text-lg text-gray-700">
             Total: R${{ order.total_price }}

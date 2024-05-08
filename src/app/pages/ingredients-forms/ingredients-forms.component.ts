@@ -69,4 +69,9 @@ export class IngredientsFormsComponent implements OnInit {
     }
   }
 
+  isDescriptionTooLong() {
+    const descriptionControl = this.ingredientForm?.get('description');
+    return descriptionControl?.value.length > 100;
+  }
+
 }

@@ -18,9 +18,10 @@ export class CartService{
   if (item) {
     item.quantity++;
   } else {
-    this.items.push({ ...product, id: `${type}-${product.id}`, quantity: 1 });
+    this.items.push({ ...product, id: `${type}-${product.id}`, type, quantity: 1 });
   }
   localStorage.setItem('cartItems', JSON.stringify(this.items));
+  console.log(JSON.stringify(this.items))
 }
 
   getItems() {

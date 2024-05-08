@@ -51,7 +51,7 @@ export class DrinkComponent implements OnInit {
   search(e: Event) {
     const target = e.target as HTMLInputElement;
     this.drinks = this.filter.filter((drink) => {
-      return drink.name?.toUpperCase().includes(target.value.toUpperCase()) || drink.description?.toUpperCase().includes(target.value.toUpperCase());
+      return drink.name?.toUpperCase().includes(target.value.toUpperCase()) || drink.id?.toString().includes(target.value.toUpperCase());
     });
   }
 }

@@ -15,6 +15,7 @@ export interface IOrder {
     state: string,
     city: string,
     total_price: number,
+    comments : string,
     drinks: IDrink[],
     hamburgers: IHamburger[],
     ingredients: IIngredients[]
