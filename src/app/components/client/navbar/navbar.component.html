@@ -5,10 +5,10 @@
         @if(authService.isLoggedIn()) {
         <button class="px-5 py-2 text-black bg-white rounded-lg hover:bg-gray-300"
             (click)="authService.logout()">Logout</button>
-        } @else {
+        }
         <button class="px-5 py-2 text-black bg-white rounded-lg hover:bg-gray-300"
             [routerLink]="['/drinks']">Admin</button>
-        }
+        
 
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-[35px] h-[35px] cursor-pointer" [routerLink]="['/cart']">
