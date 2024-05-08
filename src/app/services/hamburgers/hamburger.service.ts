@@ -7,7 +7,7 @@ import { IHamburger } from '../../Interfaces/IHamburger';
 })
 export class HamburgerService {
   private http = inject(HttpClient);
-  apiUrl = 'http://localhost:8080/hamburger';
+  apiUrl = 'http://localhost:8080/api/hamburger';
 
   constructor() { }
 

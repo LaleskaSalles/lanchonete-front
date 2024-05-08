@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { OrderService } from '../../../services/orders/order.service';
-import { IOrder } from '../../../Interfaces/IOrder';
+import { OrderService } from '../../services/orders/order.service';
+import { IOrder } from '../../Interfaces/IOrder';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../../services/cart/cart.service';
+import { CartService } from '../../services/cart/cart.service';
 import { NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({

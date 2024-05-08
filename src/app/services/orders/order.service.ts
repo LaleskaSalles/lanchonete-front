@@ -8,7 +8,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class OrderService {
   private http = inject(HttpClient);
-  apiurl = 'http://localhost:8080/order';
+  apiurl = 'http://localhost:8080/api/order';
 
   constructor(
     private fb: FormBuilder

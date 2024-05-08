@@ -8,7 +8,7 @@ import { IIngredients } from '../../Interfaces/IIngredients';
 export class IngredientService {
 
   private http = inject(HttpClient);
-  apiurl = 'http://localhost:8080/ingredient';
+  apiurl = 'http://localhost:8080/api/ingredient';
 
   constructor() { }
 

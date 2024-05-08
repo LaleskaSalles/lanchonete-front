@@ -1,27 +1,35 @@
-# LanchoneteFront
+# Lanchonete
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+Bem-vindo ao projeto Lanchonete! Este é um aplicativo desenvolvido em Angular 17 que permite aos usuários adicionar alimentos ao carrinho e simular uma compra, enquanto os administradores podem realizar operações CRUD (Create, Read, Update, Delete) de ingredientes, hamburgers e bebidas.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Antes de começar, certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
-## Code scaffolding
+- Node.js
+- Angular CLI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instalação
 
-## Build
+1. Clone este repositório para o seu ambiente local.
+2. Navegue até o diretório do projeto no terminal.
+3. Execute `npm install` para instalar todas as dependências.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Executando o aplicativo
 
-## Running unit tests
+Após a instalação, você pode iniciar o servidor de desenvolvimento executando o seguinte comando:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+        ng serve
 
-## Running end-to-end tests
+Isso iniciará o servidor de desenvolvimento e você poderá acessar o aplicativo no navegador em `http://localhost:4200`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Funcionalidades
 
-## Further help
+- **Público:**
+  - Adicionar alimentos ao carrinho
+  - Simular uma compra
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Administradores:**
+  - CRUD de ingredientes
+  - CRUD de hamburgers
+  - CRUD de bebidas

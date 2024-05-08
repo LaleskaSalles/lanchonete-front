@@ -7,7 +7,7 @@ import { IDrink } from '../../Interfaces/IDrink';
 })
 export class DrinkService {
   private http = inject(HttpClient);
-  apiurl = 'http://localhost:8080/drink';
+  apiurl = 'http://localhost:8080/api/drink';
 
   constructor() { }
 
